@@ -16,7 +16,7 @@ import { ArrowLeft, Download, Zap, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { Textarea } from "@/components/ui/textarea"
 
-// Prevent prerendering since this page requires dynamic parameters and Supabase client
+// Prevent prerendering - this page uses dynamic parameters and requires authentication
 export const dynamic = "force-dynamic"
 
 interface Lecture {
@@ -79,7 +79,7 @@ export default function LectureDetailPage() {
   const lectureId = params.id as string
   const router = useRouter()
   const { toast } = useToast()
-  const supabase = createClient()
+  const [supabase] = useState(() => createClient())
 
   const [lecture, setLecture] = useState<Lecture | null>(null)
   const [transcriptions, setTranscriptions] = useState<Transcription[]>([])

@@ -12,7 +12,7 @@ import { useToast } from "@/hooks/use-toast"
 import { LogOut, BookOpen, X } from "lucide-react"
 import { RecordingModal } from "@/components/recording-modal"
 
-// Prevent prerendering since this page requires Supabase client and authentication
+// Prevent prerendering - this page is dynamic and requires authentication
 export const dynamic = "force-dynamic"
 
 interface Lecture {
@@ -34,7 +34,7 @@ export default function DashboardPage() {
   const [filterDate, setFilterDate] = useState("")
   const router = useRouter()
   const { toast } = useToast()
-  const supabase = createClient()
+  const [supabase] = useState(() => createClient())
 
   // Filter lectures based on search query and date
   const filteredLectures = lectures.filter((lecture) => {
