@@ -12,6 +12,9 @@ import { useToast } from "@/hooks/use-toast"
 import { LogOut, BookOpen, X } from "lucide-react"
 import { RecordingModal } from "@/components/recording-modal"
 
+// Prevent prerendering since this page requires Supabase client and authentication
+export const dynamic = "force-dynamic"
+
 interface Lecture {
   id: string
   title: string

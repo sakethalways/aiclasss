@@ -16,6 +16,9 @@ import { ArrowLeft, Download, Zap, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { Textarea } from "@/components/ui/textarea"
 
+// Prevent prerendering since this page requires dynamic parameters and Supabase client
+export const dynamic = "force-dynamic"
+
 interface Lecture {
   id: string
   title: string
